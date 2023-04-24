@@ -12,8 +12,6 @@ export default function App() {
       .catch(err => console.error('Error fetching:', err));
   }, []);
 
-  //re-render anytime orders changes
-
   return (
     <main className="App">
       <header>
