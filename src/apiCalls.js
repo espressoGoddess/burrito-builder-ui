@@ -16,5 +16,13 @@ export const addOrder = (infoToSubmit) => {
         throw new Error('whoops')
       }
     })
+}
 
+export const deleteOrder = (orderId) => {
+  return fetch(`http://localhost:3001/api/v1/orders/${orderId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }

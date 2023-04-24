@@ -1,9 +1,20 @@
 import React from 'react';
 import './Orders.css';
 
-const Orders = props => {
+export default function Orders({ orders, deleteOrder, getOrders, setOrders }) {
 
-  const orderEls = props.orders.map(order => {
+  const handleDoneClick = (e) => {
+    e.preventDefault();
+    deleteOrder(e.target.dataset.id)
+      .then(res => {
+        if (res.status === 204) {
+          getOrders().then(data => setOrders(data.orders))
+          .catch(err => console.error('Error fetching:', err));
+        }
+      })
+  }
+
+  const orderEls = orders.map(order => {
     return (
       <div key={order.id} className="order">
         <h3>{order.name}</h3>
@@ -12,6 +23,7 @@ const Orders = props => {
             return <li key={ingredient}>{ingredient}</li>
           })}
         </ul>
+        <button onClick={(e) => handleDoneClick(e)} key={order.id} data-id={order.id}>Done</button>
       </div>
     )
   });
@@ -22,5 +34,3 @@ const Orders = props => {
     </section>
   )
 }
-
-export default Orders;

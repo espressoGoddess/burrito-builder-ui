@@ -55,7 +55,6 @@ export default function OrderForm({ addOrder, getOrders, setOrders }) {
         placeholder='Name'
         name='name'
         value={name}
-        // required
         onChange={e => handleNameChange(e)}
       />
 
@@ -64,7 +63,7 @@ export default function OrderForm({ addOrder, getOrders, setOrders }) {
       <p>Order: { ingredients.length ? ingredients.join(', ') : 'Nothing selected' }</p>
 
       {triedToSubmitWithoutInfo ? <p style={{color: 'red'}}>Oops, you must add a name and ingredients before submitting</p> : null}
-      
+
       <button onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
