@@ -1,7 +1,4 @@
 //as a user, on page load, i should see a form to create an order and already existing orders
-//as a user, i should be able to submit an order and then see the updated orders
-//as a user, i should not be able to add an order without a name
-
 
 describe('as a user, on page load, i should see a form to create an order and already existing orders', () => {
   beforeEach(() => {
