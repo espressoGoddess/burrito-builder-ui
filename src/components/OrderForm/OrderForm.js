@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export default function OrderForm() {
+export default function OrderForm({ addOrder, getOrders, setOrders }) {
 
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState([]);
@@ -8,6 +8,8 @@ export default function OrderForm() {
   const handleSubmit = e => {
     e.preventDefault();
     if (ingredients.length && name) {
+      addOrder({name: name, ingredients: ingredients})
+        .then(() => getOrders().then(data => setOrders(data.orders)));
       clearInputs();
     } return;
   }
