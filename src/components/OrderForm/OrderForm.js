@@ -7,11 +7,9 @@ export default function OrderForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!ingredients.length || !name) {
-      return
-    } else {
+    if (ingredients.length && name) {
       clearInputs();
-    }
+    } return;
   }
 
   const clearInputs = () => {
@@ -20,12 +18,16 @@ export default function OrderForm() {
   }
 
   const handleNameChange = (e) => {
-    setName(e.target.value)
+    setName(e.target.value);
   }
 
   const handleIngredientChange = (e) => {
+    e.preventDefault();
     const ingredient = e.target.name
-    ingredients.length ? setIngredients([...ingredients, ingredient]) : setIngredients([ingredient])
+    if (!ingredients.includes(ingredient)) {
+      ingredients.length ? setIngredients([...ingredients, ingredient]) : setIngredients([ingredient])
+
+    }
   }
 
   const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
@@ -39,13 +41,13 @@ export default function OrderForm() {
   });
 
   return (
-    <form>
+    <form  >
       <input
         type='text'
         placeholder='Name'
         name='name'
         value={name}
-        required
+        // required
         onChange={e => handleNameChange(e)}
       />
 
