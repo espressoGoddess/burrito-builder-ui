@@ -7,7 +7,11 @@ export default function OrderForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    this.clearInputs();
+    if (!ingredients.length || !name) {
+      return
+    } else {
+      clearInputs();
+    }
   }
 
   const clearInputs = () => {
@@ -49,7 +53,7 @@ export default function OrderForm() {
 
       <p>Order: { ingredients.length ? ingredients.join(', ') : 'Nothing selected' }</p>
 
-      <button onClick={e => this.handleSubmit(e)}>
+      <button onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
     </form>
